@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  nginx:
+    image: "nginx:1.17"
+    container_name: terria-nginx
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - 80:80
+
+  terria:
+    build:
+      context: ./terria/
+      dockerfile: Dockerfile
+    image: terria-docker-sample
+    container_name: terria-docker-sample
+    tty:
+      true
+    ports:
+      - 3001:3001
+
